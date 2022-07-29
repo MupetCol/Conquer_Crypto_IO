@@ -5,48 +5,58 @@ using UnityEngine;
 public class CombatDrawer : MonoBehaviour
 {
     private LineRenderer _lineRenderer;
-    private Vector3 _mousePos;
-    private Vector3 _startMousePos;
-    [SerializeField] private SpriteRenderer _arrowTest;
+    [SerializeField] private GameObject _arrowTest;
     [SerializeField] private Camera _mainCamera;
+    [SerializeField] private Transform _attacker;
     [SerializeField] private Transform _target;
+
+
+    Quaternion _startRotation;
+    Quaternion _endRotation;
+    float _startSize;
+    float _endSize;
+
+    float _lerpProgress = 0f;
+
+
+    public float _rotSpeed = 1f;
     void Start()
     {
         _lineRenderer = GetComponent<LineRenderer>();
         _lineRenderer.positionCount = 3;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //Determine direction to rotate towards 
-        Vector3 targetDirection = _target.position - _arrowTest.transform.position;
-
-        // The speed at which we will rotate
-        float singleStep = /*speed*/ Time.deltaTime;
-
-        // Rotate the forward vector towards the target direction by one step
-        Vector3 newDirection = Vector3.RotateTowards(_arrowTest.transform.forward, targetDirection, singleStep, 0.0f);
-
-        // Draw a ray ponting at our target in
-        Debug.DrawRay(_arrowTest.transform.position, newDirection, Color.red);
-
-        // Calculate a rotation a step closer to the target and applies the rotation to the sprite
-        _arrowTest.transform.rotation = Quaternion.LookRotation(newDirection);
-
-        //Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-        //if (Physics.Raycast(ray, out RaycastHit raycastHit))
-        //{
-        //    _arrowTest.transform.LookAt(raycastHit.point - _arrowTest.transform.position);
-        //    //_startMousePos = raycastHit.point;
-        //}
-
-        if (Input.GetMouseButton(0))
+        Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit raycastHit))
         {
-            //_mousePos = raycastHit.point;
-            //_lineRenderer.SetPosition(0, new Vector3(_startMousePos.x, .7f, _startMousePos.z));
-            //_lineRenderer.SetPosition(1, new Vector3(_mousePos.x - (_mousePos.x/4), .7f, _mousePos.z - (_mousePos.z / 4)));
-            //_lineRenderer.SetPosition(2, new Vector3(_mousePos.x, _mousePos.y, _mousePos.z));
+            if (raycastHit.transform.CompareTag("Selectable"))
+            {
+                if(_target == null || _target != raycastHit.transform)
+                {
+                    _target = raycastHit.transform;
+                    _lerpProgress = 0f;
+
+                    float Angle = Vector3.Angle(_attacker.position, _target.position - _attacker.position);
+                    _startRotation = _arrowTest.transform.rotation;
+                    _endRotation = Quaternion.Euler(90, 0, -Angle);
+                    _startSize = _arrowTest.GetComponent<SpriteRenderer>().size.y;
+                    Vector2 _targetVect = new Vector2(raycastHit.transform.position.x, raycastHit.transform.position.z);
+                    Vector2 _attackerVect = new Vector2(_attacker.transform.position.x, _attacker.transform.position.z);
+                    _endSize = Vector2.Distance(_targetVect, _attackerVect);
+                }
+
+
+                if (_lerpProgress < 1 & _lerpProgress >= 0)
+                {
+                    _lerpProgress += Time.deltaTime * _rotSpeed;
+                    _arrowTest.transform.rotation = Quaternion.Lerp(_startRotation, _endRotation, _lerpProgress);
+                    _arrowTest.GetComponent<SpriteRenderer>().size = Vector2.Lerp(new Vector2(0.5f, _startSize), new Vector2(0.5f, _endSize), _lerpProgress);
+                }
+
+            }
         }
     }
+
 }

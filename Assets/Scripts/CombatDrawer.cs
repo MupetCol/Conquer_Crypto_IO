@@ -74,12 +74,7 @@ public class CombatDrawer : MonoBehaviour
                     {
                         Angle = 180;
                     }
-
-                        //Vector2 tempArrowVector = new Vector2(_tempArrow.transform.position.x, _tempArrow.transform.position.z);
-                        //Vector2 tempTargetVector = new Vector2(_target.transform.position.x, _target.transform.position.z);
-
-                        //float Angle2D = Vector2.Angle(tempArrowVector, tempTargetVector - tempArrowVector);
-                        Debug.Log(Angle);
+                    //Debug.Log(Angle);
                     Debug.DrawLine(_atacker.position, _target.position);
 
                     // Set start rotation

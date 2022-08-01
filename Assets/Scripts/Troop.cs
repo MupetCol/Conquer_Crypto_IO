@@ -30,31 +30,24 @@ public class Troop : MonoBehaviour
         transform.Translate(_troopSpeed * Vector3.Normalize(_direction) * Time.deltaTime, Space.World);
         if (Vector3.Distance(transform.position, _deffenderWhenSpawned.position) < _distanceDestroy)
         {
-            if (_combatManager._isAttack)
+            
+            if (_defenderText.color != _attackerText.color)
             {
-                if (_defenderText.color != _attackerText.color)
-                {
-                    _defTerrManager._count -= _value;
-                }
-                else
-                {
-                    _defTerrManager._count += _value;
-                }
-
-                if (_defTerrManager._count <= 0)
-                {
-                    _defenderText.color = _attackerText.color;
-                    _defTerr._nation = _atTerr._nation;
-                    _deffenderWhenSpawned.GetComponent<Renderer>().material = _attackerMaterial;
-                    _deffenderWhenSpawned.GetComponent<TerrainSpot>()._terrainMaterial = _attackerMaterial;
-                    _defTerrManager._active = true;
-                }
+                _defTerrManager._count -= _value;
             }
-            else
+            else if (_defenderText.color == _attackerText.color)
             {
                 _defTerrManager._count += _value;
             }
 
+            if (_defTerrManager._count <= 0)
+            {
+                _defenderText.color = _attackerText.color;
+                _defTerr._nation = _atTerr._nation;
+                _deffenderWhenSpawned.GetComponent<Renderer>().material = _attackerMaterial;
+                _deffenderWhenSpawned.GetComponent<TerrainSpot>()._terrainMaterial = _attackerMaterial;
+                _defTerrManager._active = true;
+            }
             Destroy(gameObject);
         }
     }

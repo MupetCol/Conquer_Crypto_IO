@@ -33,8 +33,8 @@ public class TroopBehavior : MonoBehaviour
         _attackerMaterial = _combatManager._attackerMaterial;
         _attackerWhenSpawned = transform.parent.transform;
         _defenderWhenSpawned = _combatManager._defender;
-        _attackerText = _attackerWhenSpawned.GetComponentInChildren<TMP_Text>();
-        _defenderText = _defenderWhenSpawned.GetComponentInChildren<TMP_Text>();
+        _attackerText = _combatManager._attackerText;
+        _defenderText = _combatManager._defenderText;
         _atTerr = _attackerWhenSpawned.GetComponent<TerrainSpot>();
         _defTerr = _defenderWhenSpawned.GetComponent<TerrainSpot>();
         _direction = (_defenderWhenSpawned.position - _attackerWhenSpawned.position);

@@ -9,7 +9,6 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private string _selectableTag = "Selectable";
 
     public List<Transform> _attacker = new List<Transform>();
-    private Color _attackerTextColor;
     public Material _attackerMaterial;
     private bool _attackerValidation;
     private float _compoundAttackTimer = 0f;
@@ -19,11 +18,11 @@ public class CombatManager : MonoBehaviour
 
 
     public Transform _defender;
-    private Color _defenderTextColor;
+    public TMP_Text _defenderText, _attackerText;
 
     private CombatDrawer _combatDrawer;
 
-    public bool _isAttack = true;
+    public bool _isAttack = false;
 
     private void Start()
     {
@@ -49,14 +48,16 @@ public class CombatManager : MonoBehaviour
                         if (_attacker.Count == 0 || _compoundAttackTimer > 1f)
                         {
                             _attacker.Add(hit.transform);
-                            _attackerTextColor = _attacker[0].GetComponentInChildren<TMP_Text>().color;
+                            hit.transform.GetComponentInChildren<CombatDrawer>().InstantiateArrow();
+                            _compoundAttackTimer = 0;
+                            _attackerText = _attacker[0].GetComponentInChildren<TMP_Text>();
                             _attackerMaterial = _attacker[0].GetComponent<TerrainSpot>()._terrainMaterial;
                         }
 
                         if (_prevAttacker != hit.transform)
                         {
                             _prevAttacker = hit.transform;
-                            _compoundAttackTimer = 0;
+                            //_compoundAttackTimer = 0;
                         }
                         else if(_prevAttacker == hit.transform)
                         {
@@ -68,8 +69,15 @@ public class CombatManager : MonoBehaviour
             }
         }
 
+        if (Physics.Raycast(ray, out hit) && Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            if (!hit.transform.CompareTag(_selectableTag))
+            {
+                ResetAttackersState();
+            }
+        }
 
-        if(Physics.Raycast(ray, out hit) && Input.GetKeyUp(KeyCode.Mouse0))
+        if (Physics.Raycast(ray, out hit) && Input.GetKeyUp(KeyCode.Mouse0))
         {
             _holdingClick = false;
             if(_attacker.Count != 0)
@@ -77,25 +85,22 @@ public class CombatManager : MonoBehaviour
                 if(hit.transform != _attacker[0] && hit.transform.CompareTag(_selectableTag))
                 {
                     _defender = hit.transform;
-                    _defenderTextColor = _defender.GetComponentInChildren<TMP_Text>().color;
+                    _defenderText = _defender.GetComponentInChildren<TMP_Text>();
 
-                    if (_attackerTextColor != _defenderTextColor)
-                    {
-                        _isAttack = true;
-                        SpawnTroopAttack();
-                        _attacker.Clear();
-
-                    }
-                    else if (_attackerTextColor == _defenderTextColor)
-                    {
-                        _isAttack = false;
-                        SpawnTroopAttack();
-                        _attacker.Clear();
-
-                    }
+                    SpawnTroopAttack();
+                    ResetAttackersState();
                 }
             }
         }
+    }
+
+    private void ResetAttackersState()
+    {
+        foreach(Transform attacker in _attacker)
+        {
+            attacker.GetComponentInChildren<CombatDrawer>().DestroyArrow();
+        }
+        _attacker.Clear();
     }
 
     private void SpawnTroopAttack()

@@ -43,7 +43,6 @@ public class GameTracker : MonoBehaviour
                 _winPopUp.SetActive(true);
             }
             yield return new WaitForSeconds(1);
-            Debug.Log(_currNations);
             _currNations = 0;
             _nationsTracked.Clear();
         }

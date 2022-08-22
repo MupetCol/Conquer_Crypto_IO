@@ -6,7 +6,8 @@ public class SelectionManager : MonoBehaviour
 {
     [SerializeField] private string _selectableTag = "Selectable";
     [SerializeField] private Material _highlightMaterial;
-    private Material _defaultMaterial;
+    private Material[] _highlightArray;
+    private Material[] _defaultMaterials;
 
     private Transform _selection;
 
@@ -14,8 +15,8 @@ public class SelectionManager : MonoBehaviour
     {
         if(_selection != null)
         {
-            var selectionRenderer = _selection.GetComponent<Renderer>();
-            selectionRenderer.material = _defaultMaterial;
+            var selectionRenderer = _selection.GetComponent<MeshRenderer>();
+            selectionRenderer.materials = _defaultMaterials;
             _selection = null;
         }
 
@@ -26,11 +27,17 @@ public class SelectionManager : MonoBehaviour
             var selection = hit.transform;
             if (selection.CompareTag(_selectableTag))
             {
-                var selectionRenderer = selection.GetComponent<Renderer>();
+                var selectionRenderer = selection.GetComponent<MeshRenderer>();
                 if (selectionRenderer != null)
                 {
-                    _defaultMaterial = selectionRenderer.GetComponent<TerrainSpot>()._terrainMaterial;
-                    selectionRenderer.material = _highlightMaterial;
+                    _defaultMaterials = selectionRenderer.GetComponent<TerrainSpot>()._terrainMaterials;
+
+                    _highlightArray = new Material[selectionRenderer.materials.Length];
+                    for (var j = 0; j < selectionRenderer.materials.Length; j++)
+                    {
+                        _highlightArray[j] = _highlightMaterial;
+                    }
+                    selectionRenderer.materials = _highlightArray;
                 }
 
                 _selection = selection;

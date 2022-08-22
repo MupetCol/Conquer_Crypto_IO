@@ -51,7 +51,7 @@ public class CombatManager : MonoBehaviour
                             hit.transform.GetComponentInChildren<CombatDrawer>().InstantiateArrow();
                             _compoundAttackTimer = 0;
                             _attackerText = _attacker[0].GetComponentInChildren<TMP_Text>();
-                            _attackerMaterial = _attacker[0].GetComponent<TerrainSpot>()._terrainMaterial;
+                            _attackerMaterial = _attacker[0].GetComponent<TerrainSpot>()._terrainMaterials[0];
                         }
 
                         if (_prevAttacker != hit.transform)

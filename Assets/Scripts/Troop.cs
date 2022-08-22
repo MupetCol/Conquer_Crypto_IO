@@ -45,7 +45,7 @@ public class Troop : MonoBehaviour
                 _defenderText.color = _attackerText.color;
                 _defTerr._nation = _atTerr._nation;
                 _deffenderWhenSpawned.GetComponent<Renderer>().material = _attackerMaterial;
-                _deffenderWhenSpawned.GetComponent<TerrainSpot>()._terrainMaterial = _attackerMaterial;
+                _deffenderWhenSpawned.GetComponent<TerrainSpot>()._terrainMaterials[0] = _attackerMaterial;
                 _defTerrManager._active = true;
             }
             Destroy(gameObject);

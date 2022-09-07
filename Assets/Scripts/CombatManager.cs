@@ -5,24 +5,37 @@ using TMPro;
 
 public class CombatManager : MonoBehaviour
 {
-    [SerializeField] private TroopBehavior _troopCommander;
-    [SerializeField] private string _selectableTag = "Selectable";
+    //COMBAT MANAGERS, DEALS WITH SPAWN OF TROOPS, ATTACK MECHANICS, ARROW VISUALS, ATTACK RAYCAST INPUTS
+
+    #region PUBLIC_VARIABLES
 
     public List<Transform> _attacker = new List<Transform>();
     public Material _attackerMaterial;
+    public Transform _defender;
+    public TMP_Text _defenderText, _attackerText;
+    public bool _isAttack = false;
+
+    #endregion
+
+    #region PRIVATE_VARIABLES
+
     private bool _attackerValidation;
     private float _compoundAttackTimer = 0f;
     private Transform _prevAttacker;
-
     private bool _holdingClick = false;
-
-
-    public Transform _defender;
-    public TMP_Text _defenderText, _attackerText;
-
     private CombatDrawer _combatDrawer;
 
-    public bool _isAttack = false;
+    #endregion
+
+    #region PRIVATE_SERIALIZED_VARIABLES
+
+    [SerializeField] private TroopBehavior _troopCommander;
+    [SerializeField] private string _selectableTag = "Selectable";
+
+
+    #endregion
+
+    #region UNITY_METHODS
 
     private void Start()
     {
@@ -34,7 +47,7 @@ public class CombatManager : MonoBehaviour
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if(Input.GetKeyDown(KeyCode.Mouse0)) _holdingClick=true;
+        if (Input.GetKeyDown(KeyCode.Mouse0)) _holdingClick = true;
 
         if (Physics.Raycast(ray, out hit) && _holdingClick)
         {
@@ -59,7 +72,7 @@ public class CombatManager : MonoBehaviour
                             _prevAttacker = hit.transform;
                             //_compoundAttackTimer = 0;
                         }
-                        else if(_prevAttacker == hit.transform)
+                        else if (_prevAttacker == hit.transform)
                         {
                             _compoundAttackTimer += Time.deltaTime;
                         }
@@ -80,9 +93,9 @@ public class CombatManager : MonoBehaviour
         if (Physics.Raycast(ray, out hit) && Input.GetKeyUp(KeyCode.Mouse0))
         {
             _holdingClick = false;
-            if(_attacker.Count != 0)
+            if (_attacker.Count != 0)
             {
-                if(hit.transform != _attacker[0] && hit.transform.CompareTag(_selectableTag))
+                if (hit.transform != _attacker[0] && hit.transform.CompareTag(_selectableTag))
                 {
                     _defender = hit.transform;
                     _defenderText = _defender.GetComponentInChildren<TMP_Text>();
@@ -94,9 +107,13 @@ public class CombatManager : MonoBehaviour
         }
     }
 
+
+    #endregion
+
+    #region PRIVATE_METHODS
     private void ResetAttackersState()
     {
-        foreach(Transform attacker in _attacker)
+        foreach (Transform attacker in _attacker)
         {
             attacker.GetComponentInChildren<CombatDrawer>().DestroyArrow();
         }
@@ -105,9 +122,20 @@ public class CombatManager : MonoBehaviour
 
     private void SpawnTroopAttack()
     {
-        foreach(Transform attacker in _attacker)
+        foreach (Transform attacker in _attacker)
         {
             Instantiate(_troopCommander, attacker, false);
         }
     }
+
+    #endregion
+
+
+
+
+
+
+
+
+
 }

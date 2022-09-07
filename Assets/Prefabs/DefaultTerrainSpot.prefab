@@ -26,14 +26,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1668154095}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.258819, y: 0, z: 0, w: 0.9659259}
   m_LocalPosition: {x: 0, y: 0, z: -0.062000275}
   m_LocalScale: {x: -2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8768178895323125898}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -30, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.021999836, y: 0.77}
@@ -110,8 +110,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280541230
-  m_fontColor: {r: 0.18039216, g: 0.87843144, b: 0.13725491, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -328,21 +328,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec7e77a03eff774bac7d5146557e2b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _combatManager: {fileID: 0}
-  _attackerWhenSpawned: {fileID: 0}
-  _deffenderWhenSpawned: {fileID: 0}
-  _attackerText: {fileID: 0}
-  _defenderText: {fileID: 0}
-  _atTerrManager: {fileID: 0}
-  _defTerrManager: {fileID: 0}
-  _atTerr: {fileID: 0}
-  _defTerr: {fileID: 0}
-  _troopSpeed: 0.2
-  _distanceDestroy: 0.615
-  _value: 2
-  _direction: {x: 0, y: 0, z: 0}
-  _attackerMaterial: {fileID: 0}
-  _troopNation: {fileID: 0}
+  _troop: {fileID: 0}
+  _parent: {fileID: 0}
+  _psSystems: []
 --- !u!1 &584939059508874923
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,21 +458,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec7e77a03eff774bac7d5146557e2b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _combatManager: {fileID: 0}
-  _attackerWhenSpawned: {fileID: 0}
-  _deffenderWhenSpawned: {fileID: 0}
-  _attackerText: {fileID: 0}
-  _defenderText: {fileID: 0}
-  _atTerrManager: {fileID: 0}
-  _defTerrManager: {fileID: 0}
-  _atTerr: {fileID: 0}
-  _defTerr: {fileID: 0}
-  _troopSpeed: 0.2
-  _distanceDestroy: 0.615
-  _value: 2
-  _direction: {x: 0, y: 0, z: 0}
-  _attackerMaterial: {fileID: 0}
-  _troopNation: {fileID: 0}
+  _troop: {fileID: 0}
+  _parent: {fileID: 0}
+  _psSystems: []
 --- !u!1 &679974279255133436
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,7 +499,7 @@ Transform:
   - {fileID: 8400503601448755093}
   - {fileID: 698283286369593187}
   m_Father: {fileID: 8768178895323125898}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &696811210621398431
 GameObject:
@@ -652,21 +628,92 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec7e77a03eff774bac7d5146557e2b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _combatManager: {fileID: 0}
-  _attackerWhenSpawned: {fileID: 0}
-  _deffenderWhenSpawned: {fileID: 0}
-  _attackerText: {fileID: 0}
-  _defenderText: {fileID: 0}
-  _atTerrManager: {fileID: 0}
-  _defTerrManager: {fileID: 0}
-  _atTerr: {fileID: 0}
-  _defTerr: {fileID: 0}
-  _troopSpeed: 0.2
-  _distanceDestroy: 0.615
-  _value: 2
-  _direction: {x: 0, y: 0, z: 0}
-  _attackerMaterial: {fileID: 0}
-  _troopNation: {fileID: 0}
+  _troop: {fileID: 0}
+  _parent: {fileID: 0}
+  _psSystems: []
+--- !u!1 &999490984573440251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7999364071655222173}
+  - component: {fileID: 6490303557240504387}
+  - component: {fileID: 5307587121108600886}
+  m_Layer: 0
+  m_Name: Pilar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7999364071655222173
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999490984573440251}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8768178895323125898}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &6490303557240504387
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999490984573440251}
+  m_Mesh: {fileID: 2534964839176971238, guid: f703a35021cad1044bd49f624ea9fed2, type: 3}
+--- !u!23 &5307587121108600886
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999490984573440251}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 8976bb44b99de3d42b6a28641d35d5df, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1848351462576969616
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,21 +841,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec7e77a03eff774bac7d5146557e2b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _combatManager: {fileID: 0}
-  _attackerWhenSpawned: {fileID: 0}
-  _deffenderWhenSpawned: {fileID: 0}
-  _attackerText: {fileID: 0}
-  _defenderText: {fileID: 0}
-  _atTerrManager: {fileID: 0}
-  _defTerrManager: {fileID: 0}
-  _atTerr: {fileID: 0}
-  _defTerr: {fileID: 0}
-  _troopSpeed: 0.2
-  _distanceDestroy: 0.615
-  _value: 2
-  _direction: {x: 0, y: 0, z: 0}
-  _attackerMaterial: {fileID: 0}
-  _troopNation: {fileID: 0}
+  _troop: {fileID: 0}
+  _parent: {fileID: 0}
+  _psSystems: []
 --- !u!1 &2544481989463854730
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,6 +908,136 @@ Transform:
   m_Father: {fileID: 8895646116307257971}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3471135735173540696
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2870530683862752016}
+  - component: {fileID: 3433923366645069212}
+  - component: {fileID: 2371684561985884829}
+  - component: {fileID: 1062683964410956593}
+  - component: {fileID: 65876069043033557}
+  - component: {fileID: 8864106042671062185}
+  m_Layer: 0
+  m_Name: Troop
+  m_TagString: Troop
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2870530683862752016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3471135735173540696}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 8891045021686686190}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3433923366645069212
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3471135735173540696}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &2371684561985884829
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3471135735173540696}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 72b8139fe631f0541befca19690c8875, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &1062683964410956593
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3471135735173540696}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &65876069043033557
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3471135735173540696}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &8864106042671062185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3471135735173540696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec7e77a03eff774bac7d5146557e2b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _troop: {fileID: 0}
+  _parent: {fileID: 0}
+  _psSystems: []
 --- !u!1 &3748092103765294711
 GameObject:
   m_ObjectHideFlags: 0
@@ -937,148 +1102,6 @@ Transform:
   m_Father: {fileID: 8895646116307257971}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4011967739734036401
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7931840293346579346}
-  - component: {fileID: 1870070265022512086}
-  - component: {fileID: 1283164951437859760}
-  - component: {fileID: 1277174413393673047}
-  - component: {fileID: 7928641360900768506}
-  - component: {fileID: 2324062319056602475}
-  m_Layer: 0
-  m_Name: Troop
-  m_TagString: Troop
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &7931840293346579346
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4011967739734036401}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 6801603177425312172}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1870070265022512086
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4011967739734036401}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1283164951437859760
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4011967739734036401}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 72b8139fe631f0541befca19690c8875, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1277174413393673047
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4011967739734036401}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.25
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &7928641360900768506
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4011967739734036401}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &2324062319056602475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4011967739734036401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ec7e77a03eff774bac7d5146557e2b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _combatManager: {fileID: 0}
-  _attackerWhenSpawned: {fileID: 0}
-  _deffenderWhenSpawned: {fileID: 0}
-  _attackerText: {fileID: 0}
-  _defenderText: {fileID: 0}
-  _atTerrManager: {fileID: 0}
-  _defTerrManager: {fileID: 0}
-  _atTerr: {fileID: 0}
-  _defTerr: {fileID: 0}
-  _troopSpeed: 0.2
-  _distanceDestroy: 0.615
-  _value: 2
-  _direction: {x: 0, y: 0, z: 0}
-  _attackerMaterial: {fileID: 0}
-  _troopNation: {fileID: 0}
 --- !u!1 &4185488914780305234
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,21 +1261,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec7e77a03eff774bac7d5146557e2b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _combatManager: {fileID: 0}
-  _attackerWhenSpawned: {fileID: 0}
-  _deffenderWhenSpawned: {fileID: 0}
-  _attackerText: {fileID: 0}
-  _defenderText: {fileID: 0}
-  _atTerrManager: {fileID: 0}
-  _defTerrManager: {fileID: 0}
-  _atTerr: {fileID: 0}
-  _defTerr: {fileID: 0}
-  _troopSpeed: 0.2
-  _distanceDestroy: 0.615
-  _value: 2
-  _direction: {x: 0, y: 0, z: 0}
-  _attackerMaterial: {fileID: 0}
-  _troopNation: {fileID: 0}
+  _troop: {fileID: 0}
+  _parent: {fileID: 0}
+  _psSystems: []
 --- !u!1 &4539185714184620526
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,7 +1292,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7931840293346579346}
+  - {fileID: 399701592167232999}
   m_Father: {fileID: 8895646116307257971}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1313,7 +1324,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 399701592167232999}
+  - {fileID: 2870530683862752016}
   m_Father: {fileID: 8895646116307257971}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1444,21 +1455,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec7e77a03eff774bac7d5146557e2b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _combatManager: {fileID: 0}
-  _attackerWhenSpawned: {fileID: 0}
-  _deffenderWhenSpawned: {fileID: 0}
-  _attackerText: {fileID: 0}
-  _defenderText: {fileID: 0}
-  _atTerrManager: {fileID: 0}
-  _defTerrManager: {fileID: 0}
-  _atTerr: {fileID: 0}
-  _defTerr: {fileID: 0}
-  _troopSpeed: 0.2
-  _distanceDestroy: 0.615
-  _value: 2
-  _direction: {x: 0, y: 0, z: 0}
-  _attackerMaterial: {fileID: 0}
-  _troopNation: {fileID: 0}
+  _troop: {fileID: 0}
+  _parent: {fileID: 0}
+  _psSystems: []
 --- !u!1 &6589913415122676684
 GameObject:
   m_ObjectHideFlags: 0
@@ -1524,7 +1523,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 8891045021686686190}
+  m_Father: {fileID: 6801603177425312172}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8245064237440523683
@@ -1618,21 +1617,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec7e77a03eff774bac7d5146557e2b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _combatManager: {fileID: 0}
-  _attackerWhenSpawned: {fileID: 0}
-  _deffenderWhenSpawned: {fileID: 0}
-  _attackerText: {fileID: 0}
-  _defenderText: {fileID: 0}
-  _atTerrManager: {fileID: 0}
-  _defTerrManager: {fileID: 0}
-  _atTerr: {fileID: 0}
-  _defTerr: {fileID: 0}
-  _troopSpeed: 0.2
-  _distanceDestroy: 0.615
-  _value: 2
-  _direction: {x: 0, y: 0, z: 0}
-  _attackerMaterial: {fileID: 0}
-  _troopNation: {fileID: 0}
+  _troop: {fileID: 0}
+  _parent: {fileID: 0}
+  _psSystems: []
 --- !u!1 &7003476449174568395
 GameObject:
   m_ObjectHideFlags: 0
@@ -1663,7 +1650,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8768178895323125898}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1312803647433825005
 MonoBehaviour:
@@ -1677,9 +1664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef7a523992245f040ae95a51e924989b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _instantiatePos: {fileID: 737440277846158656}
   _arrow: {fileID: 501343859989039052, guid: f7fd2106e8444a34db94f5da512f9c9c, type: 3}
-  _atacker: {fileID: 8768178895323125898}
   _rotSpeed: 5
 --- !u!1 &7285532018255667986
 GameObject:
@@ -1808,21 +1793,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec7e77a03eff774bac7d5146557e2b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _combatManager: {fileID: 0}
-  _attackerWhenSpawned: {fileID: 0}
-  _deffenderWhenSpawned: {fileID: 0}
-  _attackerText: {fileID: 0}
-  _defenderText: {fileID: 0}
-  _atTerrManager: {fileID: 0}
-  _defTerrManager: {fileID: 0}
-  _atTerr: {fileID: 0}
-  _defTerr: {fileID: 0}
-  _troopSpeed: 0.2
-  _distanceDestroy: 0.615
-  _value: 2
-  _direction: {x: 0, y: 0, z: 0}
-  _attackerMaterial: {fileID: 0}
-  _troopNation: {fileID: 0}
+  _troop: {fileID: 0}
+  _parent: {fileID: 0}
+  _psSystems: []
 --- !u!1 &7625228807912528918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1895,7 +1868,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: cfc10560a0d92164b8722c0752e19e68,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cfc10560a0d92164b8722c0752e19e68,
         type: 3}
@@ -1965,6 +1938,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 9089510080867647329}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &251917686
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8279028520546435632}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.1531405, y: 0.6546836, z: 2.3479962}
+  m_Center: {x: 0.17140949, y: 0.31251895, z: -0.019283712}
 --- !u!114 &1864153386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1978,7 +1964,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _terrainMaterials: []
-  _nation: 2
+  _pillar: {fileID: 999490984573440251}
+  _terrainPrefab: {fileID: 0}
+  _nation: 0
 --- !u!4 &8768178895323125898 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cfc10560a0d92164b8722c0752e19e68,

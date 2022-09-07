@@ -5,29 +5,39 @@ using TMPro;
 
 public class TroopBehavior : MonoBehaviour
 {
-    private CombatManager _combatManager;
-    private Transform _attackerWhenSpawned, _defenderWhenSpawned;
-    private TMP_Text _attackerText, _defenderText;
-    private Material _attackerMaterial;
-    private float _troopSpeed = 1f;
-    private float _distanceDestroy = .615f;
-    private int _value = 5;
+    #region PROTECTED_VARIABLES
+
+    protected CombatManager _combatManager;
+    protected Transform _attackerWhenSpawned, _defenderWhenSpawned;
+    protected TMP_Text _attackerText, _defenderText;
+    protected Material _attackerMaterial;
+    protected float _troopSpeed = 1f;
+    protected float _distanceDestroy = .615f;
+    protected int _value = 5;
+    protected Vector3 _direction;
+    protected TerrainCountManager _atTerrManager, _defTerrManager;
+    protected TerrainSpot _atTerr, _defTerr;
+
+    #endregion
+
+    #region PRIVATE_SERIALIZED_VARIABLES
 
     [SerializeField] private Troop _troop;
 
-    private Vector3 _direction;
+    #endregion
 
-
-    private TerrainCountManager _atTerrManager, _defTerrManager;
-    private TerrainSpot _atTerr, _defTerr;
-
+    #region UNITY_METHODS
     void Start()
     {
-        SaveNeededMembers();
+        SetNeededMembers();
         StartCoroutine(SendTroops());
     }
 
-    public virtual void SaveNeededMembers()
+    #endregion
+
+    #region PUBLIC_METHODS
+
+    public virtual void SetNeededMembers()
     {
         _combatManager = FindObjectOfType<CombatManager>();
         _attackerMaterial = _combatManager._attackerMaterial;
@@ -42,41 +52,18 @@ public class TroopBehavior : MonoBehaviour
         _defTerrManager = _defenderWhenSpawned.GetComponentInChildren<TerrainCountManager>();
     }
 
-    IEnumerator SendTroops()
-    {
-        _atTerrManager._spawnPointsHolder.LookAt(_atTerrManager._spawnPointsHolder.position - _direction);
-        int troopAmount = _attackerWhenSpawned.GetComponentInChildren<TerrainCountManager>()._count / _value;
-        int res = _attackerWhenSpawned.GetComponentInChildren<TerrainCountManager>()._count % _value;
-        int counterSpawnPoints = 0;
-        int counterTroopsSpawned = 0;
+    #endregion
 
-        for (int i = 0; i < troopAmount; i++)
-        {
-            InstantiateTroop(_value, _atTerrManager._spawnPoints[counterSpawnPoints]);
-            counterTroopsSpawned++;
-            if(counterTroopsSpawned == 1 || counterTroopsSpawned == 4 || counterTroopsSpawned == 9)
-            {
-                yield return new WaitForSeconds(.2f);
-                if (counterTroopsSpawned == 9) counterTroopsSpawned = 0;
-            }
-            counterSpawnPoints++;
-            if (counterSpawnPoints > _atTerrManager._spawnPoints.Length-1) counterSpawnPoints = 0;
-        }
-
-        if(res > 0)
-        {
-            InstantiateTroop(res, _atTerrManager._spawnPoints[counterSpawnPoints]);
-        }
-        _atTerrManager._spawnPointsHolder.rotation = Quaternion.Euler(new Vector3(0,0,0));
-        DestroyCommander();
-    }
+    #region PRIVATE_METHODS
 
     private void InstantiateTroop(int value, Transform spawnPoint)
     {
         Troop troop = (Troop)Instantiate(_troop, spawnPoint.position, Quaternion.identity);
+
+        //Initialize troop's needed variables
         troop._attackerWhenSpawned = this._attackerWhenSpawned;
         troop._combatManager = this._combatManager;
-        troop._deffenderWhenSpawned = this._defenderWhenSpawned;
+        troop._defenderWhenSpawned = this._defenderWhenSpawned;
         troop._defenderText = this._defenderText;
         troop._attackerText = this._attackerText;
         troop._direction = this._direction;
@@ -94,5 +81,42 @@ public class TroopBehavior : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    #endregion
+
+    #region COROUTINES
+
+    IEnumerator SendTroops()
+    {
+        _atTerrManager._spawnPointsHolder.LookAt(_atTerrManager._spawnPointsHolder.position - _direction);
+        int troopAmount = _attackerWhenSpawned.GetComponentInChildren<TerrainCountManager>()._realCount / _value;
+        int res = _attackerWhenSpawned.GetComponentInChildren<TerrainCountManager>()._realCount % _value;
+        int counterSpawnPoints = 0;
+        int counterTroopsSpawned = 0;
+
+        _atTerrManager._realCount -= (troopAmount * _value) + (res);
+        for (int i = 0; i < troopAmount; i++)
+        {
+            InstantiateTroop(_value, _atTerrManager._spawnPoints[counterSpawnPoints]);
+            counterTroopsSpawned++;
+            if (counterTroopsSpawned == 1 || counterTroopsSpawned == 4 || counterTroopsSpawned == 9)
+            {
+                yield return new WaitForSeconds(.2f);
+                if (counterTroopsSpawned == 9) counterTroopsSpawned = 0;
+            }
+            counterSpawnPoints++;
+            if (counterSpawnPoints > _atTerrManager._spawnPoints.Length - 1) counterSpawnPoints = 0;
+        }
+
+        if (res > 0)
+        {
+            InstantiateTroop(res, _atTerrManager._spawnPoints[counterSpawnPoints]);
+        }
+        _atTerrManager._spawnPointsHolder.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        yield return new WaitForSeconds(10);
+        DestroyCommander();
+    }
+
+    #endregion
 
 }

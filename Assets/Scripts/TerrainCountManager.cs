@@ -5,36 +5,52 @@ using TMPro;
 
 public class TerrainCountManager : MonoBehaviour
 {
+    #region PUBLIC_VARIABLES
+
     public int _minCountValue = 0, _maxCountValue = 200;
-    public int _count = 0;
+    public int _realCount = 0;
+    public int _textCount = 0;
     public float _countDecimal = 0f;
-    private TMP_Text _countString;
     public bool _active;
-    [SerializeField] public Transform[] _spawnPoints;
-    [SerializeField] public Transform _spawnPointsHolder;
+    public Transform[] _spawnPoints;
+    public Transform _spawnPointsHolder;
+
+    #endregion
+
+    #region PRIVATE_VARIABLES
+
+    private TMP_Text _countString;
+
+    #endregion
+
+    #region UNITY_METHODS
 
     private void Start()
     {
-        if(!_active)_count = 40;
+        if (!_active) _realCount = 40;
         _maxCountValue = 200;
         _countString = GetComponent<TMP_Text>();
-        _countString.text = _count.ToString();
+        _textCount = _realCount;
+        _countString.text = _textCount.ToString();
     }
 
     private void Update()
     {
-        _countString.text = Mathf.Clamp(_count, _minCountValue, _maxCountValue).ToString();
-        if(_count < 0) _count = 0;
+        _countString.text = Mathf.Clamp(_textCount, _minCountValue, _maxCountValue).ToString();
+        if (_realCount < 0) _realCount = 0;
         if (_active)
         {
             _countDecimal += Time.deltaTime;
-            if(_countDecimal >= .2f && _count < _maxCountValue)
+            if (_countDecimal >= .2f && _realCount < _maxCountValue)
             {
                 _countDecimal = 0;
-                _count++;
+                _textCount++;
+                _realCount++;
             }
         }
 
     }
+
+    #endregion
 
 }

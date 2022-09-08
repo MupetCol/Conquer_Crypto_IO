@@ -37,8 +37,10 @@ public class SelectionManager : MonoBehaviour
         {
             var selectionRenderer = _selection.GetComponent<MeshRenderer>();
             selectionRenderer.materials = _defaultMaterials;
-            _selection.GetChild(0).GetComponent<MeshRenderer>().material = _defaultMatChild;
-            _selection = null;
+
+            //Pillar related stuff
+            //_selection.GetChild(0).GetComponent<MeshRenderer>().material = _defaultMatChild;
+            //_selection = null;
 
         }
 
@@ -62,6 +64,8 @@ public class SelectionManager : MonoBehaviour
                         _highlightArray[j] = _highlightMaterial;
                     }
                     selectionRenderer.materials = _highlightArray;
+
+                    if(terr._pillar != null)
                     terr._pillar.GetComponent<MeshRenderer>().material = _defaultMatChild? _highlightMaterial:null;
                 }
 

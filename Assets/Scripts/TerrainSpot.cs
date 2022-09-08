@@ -19,7 +19,7 @@ public class TerrainSpot : MonoBehaviour
 
     void Start()
     {
-        _defaultPillarMat = _pillar.GetComponent<MeshRenderer>().material;
+        if(_pillar != null)_defaultPillarMat = _pillar.GetComponent<MeshRenderer>().material;
         _terrainMaterials = GetComponent<MeshRenderer>().materials;
         if (_terrainMaterials[0] == Utilities.Instance._nationlessMaterial)
         {

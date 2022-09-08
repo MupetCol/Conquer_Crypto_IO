@@ -44,7 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a98adcef9242a7438af97b4c44fe410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _troopSpeed: 1
-  _distanceDestroy: 0.25
-  _value: 2
+  _distanceDestroy: 0.6
   _troop: {fileID: 3983869008345190770, guid: e18bfe61554efc44bbaae523d91f3a86, type: 3}

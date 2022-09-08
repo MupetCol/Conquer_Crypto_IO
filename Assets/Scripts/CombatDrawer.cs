@@ -67,6 +67,7 @@ public class CombatDrawer : MonoBehaviour
                     // Set current _target transform
                     _target = raycastHit.transform;
 
+
                     // Reset _lerpProgress each time a new _target is set for the arrows to rotate correctly
                     _lerpProgress = 0f;
 

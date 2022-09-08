@@ -60,11 +60,15 @@ public class Troop : TroopBehavior
                 _defTerr._nation = _atTerr._nation;
                 _defTerr._terrainMaterials = _atTerr._terrainMaterials;
                 _defTerr._defaultPillarMat = _atTerr._defaultPillarMat;
-                _defTerr._pillar.GetComponent<MeshFilter>().mesh = _atTerr._pillar.GetComponent<MeshFilter>().mesh;
-                _defTerr._pillar.GetComponent<MeshRenderer>().material = _atTerr._defaultPillarMat;
                 _defTerr.GetComponent<MeshRenderer>().materials = _atTerr._terrainMaterials;
                 //_defenderWhenSpawned.GetComponent<TerrainSpot>()._terrainMaterials[0] = _attackerMaterial;
                 _defTerrManager._active = true;
+
+                if (_defTerr._pillar != null)
+                {
+                    _defTerr._pillar.GetComponent<MeshFilter>().mesh = _atTerr._pillar.GetComponent<MeshFilter>().mesh;
+                    _defTerr._pillar.GetComponent<MeshRenderer>().material = _atTerr._defaultPillarMat;
+                }
             }
             Destroy(gameObject);
         }

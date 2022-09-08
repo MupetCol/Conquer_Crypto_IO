@@ -12,7 +12,7 @@ public class TroopBehavior : MonoBehaviour
     protected TMP_Text _attackerText, _defenderText;
     protected Material _attackerMaterial;
     protected float _troopSpeed = 1f;
-    protected float _distanceDestroy = .615f;
+    public float _distanceDestroy = .615f;
     protected int _value = 5;
     protected Vector3 _direction;
     protected TerrainCountManager _atTerrManager, _defTerrManager;

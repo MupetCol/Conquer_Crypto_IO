@@ -14,6 +14,7 @@ public class TerrainCountManager : MonoBehaviour
     public bool _active;
     public Transform[] _spawnPoints;
     public Transform _spawnPointsHolder;
+    public Vector3 _spawnPointsInitialTransform;
 
     #endregion
 
@@ -32,6 +33,12 @@ public class TerrainCountManager : MonoBehaviour
         _countString = GetComponent<TMP_Text>();
         _textCount = _realCount;
         _countString.text = _textCount.ToString();
+        _spawnPoints = new Transform[_spawnPointsHolder.childCount];
+ 
+        for (int i = 0; i < _spawnPointsHolder.childCount; i++)
+        {
+            _spawnPoints[i] = _spawnPointsHolder.GetChild(i).transform;
+		}
     }
 
     private void Update()

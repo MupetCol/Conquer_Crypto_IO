@@ -11,18 +11,19 @@ public class TroopBehavior : MonoBehaviour
     protected Transform _attackerWhenSpawned, _defenderWhenSpawned;
     protected TMP_Text _attackerText, _defenderText;
     protected Material _attackerMaterial;
-    protected float _troopSpeed = 1f;
+    public float _troopSpeed = 1f;
     public float _distanceDestroy = .615f;
     protected int _value = 5;
     protected Vector3 _direction;
     protected TerrainCountManager _atTerrManager, _defTerrManager;
     protected TerrainSpot _atTerr, _defTerr;
 
+    public Troop[] _troops;
+    private int _nation;
+
     #endregion
 
     #region PRIVATE_SERIALIZED_VARIABLES
-
-    [SerializeField] private Troop _troop;
 
     #endregion
 
@@ -30,6 +31,7 @@ public class TroopBehavior : MonoBehaviour
     void Start()
     {
         SetNeededMembers();
+        _nation = _atTerr._nation;
         StartCoroutine(SendTroops());
     }
 
@@ -58,7 +60,8 @@ public class TroopBehavior : MonoBehaviour
 
     private void InstantiateTroop(int value, Transform spawnPoint)
     {
-        Troop troop = (Troop)Instantiate(_troop, spawnPoint.position, Quaternion.identity);
+        Debug.Log(_nation - 1);
+        Troop troop = (Troop)Instantiate(_troops[_nation-1], spawnPoint.position, Quaternion.identity);
 
         //Initialize troop's needed variables
         troop._attackerWhenSpawned = this._attackerWhenSpawned;

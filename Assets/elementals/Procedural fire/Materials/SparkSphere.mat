@@ -55,7 +55,7 @@ Material:
     - _Depthpower: 1
     - _Emission: 5
     - _Frequency: 10
-    - _Opacity: 1
+    - _Opacity: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0
     - _StartFrequency: 0

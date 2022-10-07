@@ -44,5 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a98adcef9242a7438af97b4c44fe410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _troopSpeed: 2
   _distanceDestroy: 0.6
-  _troop: {fileID: 3983869008345190770, guid: e18bfe61554efc44bbaae523d91f3a86, type: 3}
+  _troops:
+  - {fileID: 3983869008345190770, guid: f43c989e62c5d9f4585ffa0818c91f80, type: 3}
+  - {fileID: 3983869008345190770, guid: e18bfe61554efc44bbaae523d91f3a86, type: 3}
+  - {fileID: 3983869008345190770, guid: 25909429700e66141b030b00b316e91a, type: 3}
+  - {fileID: 3983869008345190770, guid: b0646be678f6fcb4e81a49bd9d31f1a2, type: 3}

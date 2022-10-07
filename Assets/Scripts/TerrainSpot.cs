@@ -9,6 +9,8 @@ public class TerrainSpot : MonoBehaviour
     public Material[] _terrainMaterials;
     public GameObject _pillar;
     public Material _defaultPillarMat;
+    public GameObject _conquerEffect;
+    public Troop _nationTroop;
     public int _nation = 0;
 
     #endregion
